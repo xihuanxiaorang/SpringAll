@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @author xiaorang
@@ -19,37 +19,32 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableFeignClients
 public class NacosConsumerApplication {
-  /**
-   * 实例化 RestTemplate 实例
-   * 标注 @LoadBalanced 注解即可在 RestTemplate 上开启 LoadBalanced 负载均衡的功能
-   */
-  @Bean
-  @LoadBalanced
-  public RestTemplate restTemplate() {
-    return new RestTemplate();
-  }
-
   public static void main(String[] args) {
     SpringApplication.run(NacosConsumerApplication.class, args);
   }
 
+  @FeignClient(name = "nacos-provider")
+  public interface EchoFeignClient {
+    @GetMapping("/echo/{str}")
+    String echo(@PathVariable(value = "str") String str);
+  }
+
   @RestController
   public static class NacosController {
-    private final RestTemplate restTemplate;
+    private final EchoFeignClient echoFeignClient;
 
     @Value("${spring.application.name}")
     private String appName;
 
-    public NacosController(final RestTemplate restTemplate) {
-      this.restTemplate = restTemplate;
+    public NacosController(final EchoFeignClient echoFeignClient) {
+      this.echoFeignClient = echoFeignClient;
     }
 
     @GetMapping("/echo/app-name")
     public String echoAppName() {
-      final String url = String.format("http://%s/echo/%s", "nacos-provider", appName);
-      System.out.println("request url:" + url);
-      return restTemplate.getForObject(url, String.class);
+      return echoFeignClient.echo(appName);
     }
   }
 }

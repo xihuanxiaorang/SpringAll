@@ -11,5 +11,11 @@
 
     <artifactId>nacos-spring-cloud-consumer-example</artifactId>
     <description>服务消费方</description>
-    
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
 </project>
