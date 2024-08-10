@@ -14,6 +14,7 @@
     <modules>
         <module>nacos-spring-cloud-config-quick-start-example</module>
         <module>nacos-spring-cloud-config-refresh-example</module>
+        <module>nacos-spring-cloud-config-profile-example</module>
     </modules>
 
     <dependencies>
