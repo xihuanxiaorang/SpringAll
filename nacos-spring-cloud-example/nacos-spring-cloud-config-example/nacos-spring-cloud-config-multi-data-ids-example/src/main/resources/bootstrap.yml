@@ -1,0 +1,26 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: nacos-config-multi-data-ids
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        file-extension: yaml
+        extension-configs:
+          - data-id: ext-config-one.yaml
+            file-extension: yaml
+            group: EXTENSION_GROUP
+            refresh: false
+          - data-id: ext-config-two.yaml
+            file-extension: yaml
+            group: EXTENSION_GROUP
+            refresh: true
+        shared-configs:
+          - data-id: shared-config-one.yaml
+            file-extension: yaml
+            group: SHARED_GROUP
+            refresh: true

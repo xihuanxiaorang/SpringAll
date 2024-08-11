@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
  * @date 2024/08/10 18:31
  */
 @SpringBootApplication
-public class NacosConfigApplication {
+public class NacosConfigProfileApplication {
   public static void main(String[] args) throws InterruptedException {
-    final ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosConfigApplication.class, args);
+    final ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosConfigProfileApplication.class, args);
     while (true) {
       //当动态配置刷新时，会更新到 Enviroment 中，因此这里每隔一秒中从 Enviroment 中获取配置
       final String userName = applicationContext.getEnvironment().getProperty("user.name");
