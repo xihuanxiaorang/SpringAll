@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>nacos-spring-cloud-example</module>
+        <module>spring-cloud-alibaba-nacos-example</module>
     </modules>
 
     <properties>
