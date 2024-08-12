@@ -1,0 +1,14 @@
+### 返回成功的响应
+GET http://localhost:8080/test/success
+
+### 返回错误的响应
+GET http://localhost:8080/test/error
+
+### 返回string类型的响应
+GET http://localhost:8080/test/hello
+
+### 测试参数类型不匹配异常
+GET http://localhost:8080/test/error2?age=cc
+
+### 访问不存在的资源
+GET http://localhost:8080/test/notfound
