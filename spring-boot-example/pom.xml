@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-response-wrapper-example</module>
+        <module>spring-boot-validation-example</module>
     </modules>
 
     <properties>

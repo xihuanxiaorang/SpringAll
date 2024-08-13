@@ -1,0 +1,101 @@
+### 请求体参数校验
+PUT http://localhost:8888/user
+Content-Type: application/json
+
+{
+    "id": 60,
+    "username": "许艳",
+    "password": "12345",
+    "email": "n.lem@tdld.org.cn",
+    "age": -1
+}
+
+### 请求参数校验
+GET  http://localhost:8888/user/echo?username=&age=-1
+
+### 请求体参数级联校验
+PUT http://localhost:8888/user
+Content-Type: application/json
+
+{
+    "id": 23,
+    "username": "雷霞",
+    "password": "123456",
+    "email": "r.uzxc@pkhax.pt",
+    "address": {
+        "province": "江西省",
+        "city": "",
+        "street": "in aliqua elit dolor est"
+    },
+    "age": 121
+}
+
+### Update分组校验
+PUT http://localhost:8888/user
+Content-Type: application/json
+
+{
+    "id": null,
+    "username": "黄平",
+    "password": "amet qui dolor in",
+    "email": "r.fswmkbwn@gblykenzi.cm",
+    "address": {
+        "province": "甘肃省",
+        "city": "重庆市",
+        "street": "quis in"
+    },
+    "age": 125
+}
+
+### Insert分组校验
+POST http://localhost:8888/user
+Content-Type: application/json
+
+{
+    "id": null,
+    "username": "",
+    "password": "amet qui dolor in",
+    "email": "r.fswmkbwn@gblykenzi.cm",
+    "address": {
+        "province": "甘肃省",
+        "city": "重庆市",
+        "street": "quis in"
+    },
+    "age": 125
+}
+
+### 自定义校验规则
+POST http://localhost:8888/user
+Content-Type: application/json
+
+{
+  "id": 96,
+  "username": "杜洋",
+  "password": "Excepteur",
+  "email": "u.vyqdfew@tvqr.tr",
+  "address": {
+    "province": "香港特别行政区",
+    "city": "中山市",
+    "street": "amet velit"
+  },
+  "status": 24,
+  "age": 79
+}
+
+### 手动校验
+POST http://localhost:8888/user/manual
+Content-Type: application/json
+
+{
+    "id": null,
+    "username": "",
+    "password": "amet qui dolor in",
+    "email": "r.fswmkbwn@gblykenzi.cm",
+    "address": {
+        "province": "甘肃省",
+        "city": "重庆市",
+        "street": "quis in"
+    },
+    "status": 1,
+    "age": 125
+}
